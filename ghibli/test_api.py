@@ -1,10 +1,6 @@
-from os import stat
-from unittest import mock
 from django.test import TestCase
-from rest_framework import status
 from ghibli.api import GhibliAPI
-from unittest.mock import Mock, patch
-from rest_framework import status
+from unittest.mock import patch
 from requests.exceptions import RequestException, ConnectionError
 
 class GhibliAPITest(TestCase):
