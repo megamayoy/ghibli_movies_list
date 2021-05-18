@@ -122,7 +122,7 @@ class FilmsListingAPI(TestCase):
             "request is expected to be successful"
         )
 
-    def test_return_500_when_films_and_people_couldn_not_be_fetched(
+    def test_return_503_when_films_and_people_couldn_not_be_fetched(
         self
     ):
         mocked_external_api = MagicMock()
@@ -136,6 +136,6 @@ class FilmsListingAPI(TestCase):
 
         self.assertEqual(
             response.status_code,
-            status.HTTP_500_INTERNAL_SERVER_ERROR,
-            "reponse should return 500"
+            status.HTTP_503_SERVICE_UNAVAILABLE,
+            "reponse should return status code 503"
         )

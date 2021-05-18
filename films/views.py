@@ -23,7 +23,7 @@ class FilmsList(APIView):
                 {
                     "error": "An Error occured while calling external API"
                 },
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                status=status.HTTP_503_SERVICE_UNAVAILABLE,
             )
         final_result = self._extract_and_combine_films_and_actors(
             films, actors
