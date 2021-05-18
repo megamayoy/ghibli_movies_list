@@ -11,12 +11,14 @@ Preview the API documentation for more details(Studio_Ghibli_Movies_List_API.yam
 
 ## Installation Guide
 Python version: 3.6
-### Create a virtualenv, activate it, install dependencies
+### Create a virtualenv, activate it, install dependencies and run the server
 make sure you navigate to the repository before running the commands below
 ```bash
 $ virtualenv venv -p=python3.6
 $ source venv/bin/activate
 $ pip install -r requirements.txt
+$ ./manage.py runserver
+then navigate to localhost:8000/movies in the browser to see the results
 ```
 
 # architecture explained
