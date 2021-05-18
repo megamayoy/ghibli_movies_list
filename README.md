@@ -21,14 +21,6 @@ $ ./manage.py runserver
 then navigate to localhost:8000/movies in the browser to see the results
 ```
 
-# architecture explained
+### Architecture explained
 It was a part of the requirements that data retrieved from the Ghibli API endpoints shouldn't be more than 1 minute older so,
 due to intesive API calls, no database is used.A cache layer is used instead to keep the data retrieved from Ghibli APIs for one minute before calling them again.
-
-
-
-
-
-
-
-
