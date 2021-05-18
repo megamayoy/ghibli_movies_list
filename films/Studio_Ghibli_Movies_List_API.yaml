@@ -1,0 +1,48 @@
+---
+openapi: 3.0.2
+info:
+  title: Studio Ghibli Movies List API
+  version: 1.0.0
+  description: an API that shows a list of movies and the characters of each one
+paths:
+  /movies:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                successful response:
+                  value:
+                  - title: Castle in the Sky
+                    actors:
+                    - Pazu
+                    - Lusheeta Toel Ul Laputa
+                    - Dola
+                    - Romska Palo Ul Laputa
+                    - Uncle Pom
+                    - General Muoro
+                    - Duffi
+                    - Louis
+                    - Charles
+                    - Henri
+                    - Motro
+                    - Okami
+                    - Colonel Muska
+                  - title: Grave of the Fireflies
+                    actors:
+                    - Duffi
+                    - Louis
+                    - Charles
+                    - Henri
+          description: successful request
+        "503":
+          content:
+            application/json:
+              examples:
+                service unavailable:
+                  value:
+                    error: An Error occured while calling external API
+          description: When the server can't communicate with the Studio Ghibli API
+      summary: return a list of all movies from Studio Ghibli and the characters of
+        each movie
