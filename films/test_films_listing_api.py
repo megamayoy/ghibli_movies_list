@@ -19,7 +19,7 @@ class FilmsListingAPI(TestCase):
                 "title": "Grave of the Fireflies"
             }
         ]
-        self.actors_sample = [
+        self.characters_sample = [
                 {
                     "name": "Pazu",
                     "films": [
@@ -36,29 +36,29 @@ class FilmsListingAPI(TestCase):
         self.output_sample = [
             {
                 'title': 'You got mail',
-                'actors': ['Tom Hanks', 'Meg Ryan']
+                'characters': ['Tom Hanks', 'Meg Ryan']
             },
             {
                  'title': 'Twilight',
-                 'actors': ["kristen stewart"]
+                 'characters': ["kristen stewart"]
             }
         ]
 
-    def test_correct_output_format_of_films_and_actors(self):
+    def test_correct_output_format_of_films_and_characters(self):
         expected_output = [
             {
                 'title': 'Castle in the Sky',
-                'actors': ['Pazu', 'Lusheeta Toel Ul Laputa']
+                'characters': ['Pazu', 'Lusheeta Toel Ul Laputa']
             },
             {
                  'title': 'Grave of the Fireflies',
-                 'actors': []
+                 'characters': []
             }
         ]
 
         self.assertEqual(
-            self.api_class()._extract_and_combine_films_and_actors(
-                self.films_sample, self.actors_sample
+            self.api_class()._extract_and_combine_films_and_characters(
+                self.films_sample, self.characters_sample
             ),
             expected_output,
             "incorrect output format"
@@ -67,7 +67,7 @@ class FilmsListingAPI(TestCase):
     def get_mocked_resources(self, resource_name, fields=[]):
             return (
                 self.films_sample if resource_name == "films"
-                else self.actors_sample
+                else self.characters_sample
             )
 
     @patch("films.views.cache")

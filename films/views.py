@@ -12,35 +12,35 @@ class FilmsList(APIView):
         cashed_films = cache.get('films')
         if cashed_films:
             return Response(cashed_films, status=status.HTTP_200_OK)
-        actors = self.external_api.get_resource(
+        characters = self.external_api.get_resource(
             "people", fields=["id","name","films"]
         )
         films = self.external_api.get_resource(
             "films", fields=["id", "title"]
         )
-        if actors == {} or films == {}:
+        if characters == {} or films == {}:
             return Response(
                 {
                     "error": "An Error occured while calling external API"
                 },
                 status=status.HTTP_503_SERVICE_UNAVAILABLE,
             )
-        final_result = self._extract_and_combine_films_and_actors(
-            films, actors
+        final_result = self._extract_and_combine_films_and_characters(
+            films, characters
         )
         cache.set('films', final_result,timeout=60)
         return Response(final_result, status=status.HTTP_200_OK)
 
-    def _extract_and_combine_films_and_actors(self, films, actors):
+    def _extract_and_combine_films_and_characters(self, films, characters):
         films_dict = {}
         for film in films:
             film_id = film["id"]
             film.pop("id")
             films_dict[film_id] = film
-            films_dict[film_id]["actors"] = []
+            films_dict[film_id]["characters"] = []
 
-        for actor in actors:
-            for film in actor["films"]:
+        for character in characters:
+            for film in character["films"]:
                 film_id = film.split('/')[-1]
-                films_dict[film_id]["actors"].append(actor["name"])
+                films_dict[film_id]["characters"].append(character["name"])
         return list(films_dict.values())
